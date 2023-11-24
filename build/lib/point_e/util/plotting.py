@@ -7,10 +7,10 @@ from .point_cloud import PointCloud
 
 
 def plot_point_cloud(
-    pc: PointCloud,#点群
+    pc: PointCloud,
     color: bool = True,
-    grid_size: int = 1, 
-    fixed_bounds: Optional[Tuple[Tuple[float, float, float], Tuple[float, float, float]]] = ( #範囲の指定？
+    grid_size: int = 1,
+    fixed_bounds: Optional[Tuple[Tuple[float, float, float], Tuple[float, float, float]]] = (
         (-0.75, -0.75, -0.75),
         (0.75, 0.75, 0.75),
     ),
@@ -46,7 +46,7 @@ def plot_point_cloud(
                 )
                 c = c @ rotation
 
-            ax.scatter(c[:, 0], c[:, 1], c[:, 2], **color_args) #点を並べる
+            ax.scatter(c[:, 0], c[:, 1], c[:, 2], **color_args)
 
             if fixed_bounds is None:
                 min_point = c.min(0)
