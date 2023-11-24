@@ -9,7 +9,7 @@ from .point_cloud import PointCloud
 def plot_point_cloud(
     pc: PointCloud,#点群
     color: bool = True,
-    grid_size: int = 1, 
+    grid_size: int = 1, #ここで表示する数を調整?
     fixed_bounds: Optional[Tuple[Tuple[float, float, float], Tuple[float, float, float]]] = ( #範囲の指定？
         (-0.75, -0.75, -0.75),
         (0.75, 0.75, 0.75),

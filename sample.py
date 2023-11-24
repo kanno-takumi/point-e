@@ -55,7 +55,9 @@ f1 =  open('pointcloud_data.txt','a')
 f1.write(str(pc))
 f1.close()
 
-fig = plot_point_cloud(pc, grid_size=1 , fixed_bounds=((-0.75, -0.75, -0.75),(0.75, 0.75, 0.75)))
+#ここの引数でgrid_sizeを決めている 3にすると3*3=9表示される
+#figはmatplotlibの型
+fig = plot_point_cloud(pc, grid_size=3 , fixed_bounds=((-0.75, -0.75, -0.75),(0.75, 0.75, 0.75)))
 print(type(fig))
 #f2 = open(('fig.txt','a')) 
 #f2.write(str(fig))
