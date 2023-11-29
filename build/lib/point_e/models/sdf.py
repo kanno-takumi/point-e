@@ -74,7 +74,7 @@ class CrossAttentionPointCloudSDFModel(PointCloudSDFModel):
     Encode point clouds using a transformer, and query points using cross
     attention to the encoded latents.
     """
-
+    
     def __init__(
         self,
         *,
@@ -93,6 +93,7 @@ class CrossAttentionPointCloudSDFModel(PointCloudSDFModel):
         self.n_ctx = n_ctx
 
         self.encoder_input_proj = nn.Linear(3, width, device=device, dtype=dtype)
+        加
         self.encoder = Transformer(
             device=device,
             dtype=dtype,
@@ -102,6 +103,7 @@ class CrossAttentionPointCloudSDFModel(PointCloudSDFModel):
             heads=encoder_heads,
             init_scale=init_scale,
         )
+        
         self.decoder_input_proj = nn.Linear(3, width, device=device, dtype=dtype)
         self.decoder = SimplePerceiver(
             device=device,

@@ -41,7 +41,7 @@ class PointCloud:
             keys = list(obj.keys())
             return PointCloud(
                 coords=obj["coords"],
-                channels={k: obj[k] for k in keys if k != "coords"},
+                channels={k: obj[k] for k in keys if k != "coords"}, 
             )
 
     def save(self, f: Union[str, BinaryIO]):

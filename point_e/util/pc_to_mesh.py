@@ -40,8 +40,11 @@ def marching_cubes_mesh(
     def int_coord_to_float(int_coords: torch.Tensor) -> torch.Tensor:
         return int_coords.float() * voxel_size + min_coord
 
-    with torch.no_grad():
-        cond = model.encode_point_clouds(
+
+    print("エラー",pc.coords.dtype) 
+    
+    with torch.no_grad():#ここ？
+        cond = model.encode_point_clouds( #エラー
             torch.from_numpy(pc.coords).permute(1, 0).to(model.device)[None]
         )
 

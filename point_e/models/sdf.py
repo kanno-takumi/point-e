@@ -92,7 +92,9 @@ class CrossAttentionPointCloudSDFModel(PointCloudSDFModel):
         self._device = device
         self.n_ctx = n_ctx
 
-        self.encoder_input_proj = nn.Linear(3, width, device=device, dtype=dtype)
+        self.encoder_input_proj = nn.Linear(3, width, device=device, dtype=dtype) #エラー
+        print("エラー",(self.encoder_input_proj.weight).dtype) #float32
+        print("エラー",(self.encoder_input_proj.bias).dtype)   #float32
         self.encoder = Transformer(
             device=device,
             dtype=dtype,
@@ -102,7 +104,9 @@ class CrossAttentionPointCloudSDFModel(PointCloudSDFModel):
             heads=encoder_heads,
             init_scale=init_scale,
         )
+        print("ここまでは出力されている")
         self.decoder_input_proj = nn.Linear(3, width, device=device, dtype=dtype)
+        print("ここも出力されている")
         self.decoder = SimplePerceiver(
             device=device,
             dtype=dtype,
@@ -112,8 +116,11 @@ class CrossAttentionPointCloudSDFModel(PointCloudSDFModel):
             heads=decoder_heads,
             init_scale=init_scale,
         )
+        print("aaa")
         self.ln_post = nn.LayerNorm(width, device=device, dtype=dtype)
+        print("aaa")
         self.output_proj = nn.Linear(width, 1, device=device, dtype=dtype)
+        print("aaa")
 
     @property
     def device(self) -> torch.device:
@@ -124,7 +131,7 @@ class CrossAttentionPointCloudSDFModel(PointCloudSDFModel):
         return self.n_query
 
     def encode_point_clouds(self, point_clouds: torch.Tensor) -> Dict[str, torch.Tensor]:
-        h = self.encoder_input_proj(point_clouds.permute(0, 2, 1))
+        h = self.encoder_input_proj(point_clouds.permute(0, 2, 1).float()) #エラー floatに変更
         h = self.encoder(h)
         return dict(latents=h)
 

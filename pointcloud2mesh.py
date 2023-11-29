@@ -1,5 +1,5 @@
 from PIL import Image
-import torch
+import torch 
 import matplotlib.pyplot as plt
 from tqdm.auto import tqdm
 
@@ -38,7 +38,7 @@ pc = PointCloud(
 fig = plot_point_cloud(pc, grid_size=2)
 
 # Produce a mesh (with vertex colors)
-mesh = marching_cubes_mesh(
+mesh = marching_cubes_mesh( #エラー
     pc=pc,
     model=model,
     batch_size=4096,
