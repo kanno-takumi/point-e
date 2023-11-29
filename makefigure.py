@@ -14,24 +14,24 @@ import ast
 import numpy
 from typing import Dict,Optional,Tuple
 from point_e.util.point_cloud import PointCloud
-#from point_e.util.point_cloud import PointCloud
+import json
+import numpy as np
+
 
 
 # 文字列からデータ構造に変換
-f = open('pointcloud_data.txt','r')
-data_str = f.read()
-data = ast.literal_eval(data_str)
-coords = np.array(data['coords'])
+file_name ='pointcloud_data.json'
+with open(file_name,'r') as file:
+    loaded_data = json.load(file)
 
-# NumPy配列に変換
-channels = {'R': np.array(data['channels']['R']),
-            'G': np.array(data['channels']['G']),
-            'B': np.array(data['channels']['B'])}
+loaded_pc = PointCloud(
+    coords=np.array(loaded_data['coords']),
+    channels={key:np.array(value) for key, value in loaded_data['channels'].items()}
+)
 
+fig = plot_point_cloud(loaded_pc, grid_size=1 , fixed_bounds=((-0.75, -0.75, -0.75),(0.75, 0.75, 0.75)))
 
-pc = PointCloud(coords=coords,channels=channels)
-f.close()
-fig = plot_point_cloud(pc, grid_size=3 , fixed_bounds=((-0.75, -0.75, -0.75),(0.75, 0.75, 0.75)))
+plt.show()
 
 
 
