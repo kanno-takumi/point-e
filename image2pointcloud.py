@@ -43,7 +43,7 @@ sampler = PointCloudSampler(
 )
 
 # 画像の準備
-img = Image.open('point_e/examples/example_data/actor.jpg')
+img = Image.open('point_e/examples/example_data/cup.jpg')
 
 # 推論の実行
 samples = None
@@ -54,7 +54,7 @@ for x in tqdm(sampler.sample_batch_progressive(batch_size=1, model_kwargs=dict(i
 pc = sampler.output_to_point_clouds(samples)[0] #pc:pointcloud
 
 #データを保存するファイル名
-file_name = 'pointcloud_data_actor.json'
+file_name = 'pointcloud_data_cup.json'
 
 #型がPointCloudデータになっているため、辞書型に直す
 data_to_save = {

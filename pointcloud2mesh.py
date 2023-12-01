@@ -25,7 +25,7 @@ model.load_state_dict(load_checkpoint(name, device))
 #pc = PointCloud.load('example_data/pc_corgi.npz')
 
 # 文字列からデータ構造に変換
-file_name ='pointcloud_data.json'
+file_name ='pointcloud_data_dog.json'
 with open(file_name,'r') as file:
     loaded_data = json.load(file)
 
