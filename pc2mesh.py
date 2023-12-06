@@ -44,6 +44,7 @@ for object_name in tqdm(object_names): #Object->Tableみたいなこと
 
         pc = PointCloud(
             coords=np.array(loaded_data['coords']),
+            channels = None
             # channels={key:np.array(value) for key, value in loaded_data['channels'].items()}
         )          
 
