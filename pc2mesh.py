@@ -29,9 +29,11 @@ model.load_state_dict(load_checkpoint(name, device))
 # 文字列からデータ構造に変換
 object_dir_path ='../dataset_pointnet/pointcloud'
 object_names = os.listdir(object_dir_path)
-for object_name in object_names: #Object->Tableみたいなこと
+
+for object_name in tqdm(object_names): #Object->Tableみたいなこと
     object_path =os.path.join(object_dir_path,object_name) #/./././Tableみたいなこと
     ids = os.listdir(object_path)
+    
     for id in ids:
         id_path = os.path.join(object_path,id)
         only_id = os.path.splitext(id)[0] #拡張子なし
