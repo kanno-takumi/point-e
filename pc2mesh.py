@@ -64,7 +64,7 @@ for object_name in tqdm(object_names): #Object->Tableみたいなこと
         save_top_directory = '../dataset_pointnet/polygon' 
         save_middle_directory = os.path.join(save_middle_directory,object_name)
         if not os.path.exists(save_middle_directory):
-            os.makedirs(save_top_directory+object_name)
+            os.makedirs(save_middle_directory)
             
         save_path = os.path.join(save_top_directory,object_name,f"{only_id}.ply")
         # Write the mesh to a PLY file to import into some other program.
