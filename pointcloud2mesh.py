@@ -47,5 +47,5 @@ mesh = marching_cubes_mesh( #エラー
 )
 
 # Write the mesh to a PLY file to import into some other program.
-with open('mesh.ply', 'wb') as f:
+with open('mesh_data/cup.ply', 'wb') as f:
     mesh.write_ply(f)
