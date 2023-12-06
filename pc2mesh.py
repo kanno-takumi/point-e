@@ -30,7 +30,7 @@ model.load_state_dict(load_checkpoint(name, device))
 object_dir_path ='../dataset_pointnet/pointcloud'
 object_names = os.listdir(object_dir_path)
 for object_name in object_names: #Object->Tableみたいなこと
-    object_path =os.path.join(object_dir_path,object) #/./././Tableみたいなこと
+    object_path =os.path.join(object_dir_path,object_name) #/./././Tableみたいなこと
     ids = os.listdir(object_path)
     for id in ids:
         id_path = os.path.join(object_path,id)
