@@ -62,7 +62,7 @@ for object_name in tqdm(object_names): #Object->Tableみたいなこと
 
         #保存
         save_top_directory = '../dataset_pointnet/polygon' 
-        save_middle_directory = os.path.join(save_middle_directory,object_name)
+        save_middle_directory = os.path.join(save_top_directory,object_name)
         if not os.path.exists(save_middle_directory):
             os.makedirs(save_middle_directory)
             
