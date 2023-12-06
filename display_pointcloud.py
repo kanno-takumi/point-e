@@ -17,38 +17,6 @@ from point_e.util.point_cloud import PointCloud
 import json
 import numpy as np
 
-
-
-# # 文字列からデータ構造に変換
-# file_name ='pointcloud_data/03001627.json'
-# with open(file_name,'r') as file:
-#     loaded_data = json.load(file)
-
-# # # 色あり
-# # loaded_pc = PointCloud(
-# #     coords=np.array(loaded_data['coords']),
-# #     channels={key:np.array(value) for key, value in loaded_data['channels'].items()}
-# # )
-
-# # #色なし
-# # loaded_pc = NoColorPointCloud(
-# #     coords = np.array(loaded_data['coords']),
-# # )
-
-# # 色の有無を確認
-# if 'channels' in loaded_data and loaded_data['channels']:
-#     loaded_pc = PointCloud(
-#         coords=np.array(loaded_data['coords']),
-#         channels={key: np.array(value) for key, value in loaded_data['channels'].items()}
-#     )
-# else:
-#     # 色情報がない場合は channels を None として PointCloud を作成
-#     loaded_pc = PointCloud(coords=np.array(loaded_data['coords']), channels=None)
-
-# fig = plot_point_cloud(loaded_pc, grid_size=1 , fixed_bounds=((-0.75, -0.75, -0.75),(0.75, 0.75, 0.75)))
-
-# plt.show()
-
 file_name ='pointcloud_data/cup.json'
 with open(file_name, 'r') as file:
     loaded_data = json.load(file)
