@@ -61,7 +61,7 @@ for object_name in tqdm(object_names): #Object->Tableみたいなこと
         )
 
         #保存
-        save_top_directory = '../dataset_pointnet/mesh' 
+        save_top_directory = '../dataset_pointnet/polygon' 
         if not os.path.exists(save_top_directory+object_name):
             os.makedirs(save_top_directory+object_name)
             
