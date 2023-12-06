@@ -14,7 +14,6 @@ import ast
 import numpy
 from typing import Dict,Optional,Tuple
 from point_e.util.point_cloud import PointCloud
-from point_e.util.nocolor_point_cloud import NoColorPointCloud
 import json
 import numpy as np
 
