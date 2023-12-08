@@ -7,7 +7,7 @@ import os
 # file_path = os.path.join('pointcloud_data',file_name )
 
 file_path = input("Enter the path to the json file : ")
-file_path = os.path.join('../dataset_pointnet/pointcloud/')
+file_path = os.path.join('../dataset_pointnet/pointcloud/',file_path)
 
 data = None
 with open(file_path) as file:
