@@ -20,7 +20,7 @@ for object_name in tqdm(object_names):
     
     #もしsave_dirの先が作られいなければ作成しておく
     if not os.path.exists(os.path.join(save_dir,object_name)):
-        os.mkdir(object_name)
+        os.makedirs(os.path.join(save_dir,object_name))
     
     for id in ids: #id ->00001.json的な
         id_path = os.path.join(object_path,id)
