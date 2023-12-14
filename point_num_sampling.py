@@ -2,22 +2,9 @@ import os
 import json
 import random
 import numpy as np
-import pandas as pd
 from tqdm import tqdm
-from glob import glob
 
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
-from keras.utils.vis_utils import plot_model
 
-from sklearn.metrics import classification_report
-
-import matplotlib.pyplot as plt
-import pprint
-
-# 乱数固定
-tf.random.set_seed(12)
 NUM_SAMPLE_POINTS = 2000
 
 #jsonから読み込む作業
