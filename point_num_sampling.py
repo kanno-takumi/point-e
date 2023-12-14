@@ -30,7 +30,8 @@ for object_name in tqdm(object_names):
         
         current_point_cloud = loaded_data["coords"] #点群の2次元配列？
         num_points = len(current_point_cloud)
-        
+        if (num_points < NUM_SAMPLE_POINTS):
+            continue
         #ランダムサンプリング
         sampled_indices = random.sample(list(range(num_points)),NUM_SAMPLE_POINTS)
         sampled_point_cloud = np.array([current_point_cloud[i] for i in sampled_indices])
