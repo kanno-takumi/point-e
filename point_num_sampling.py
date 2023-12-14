@@ -46,7 +46,7 @@ for object_name in tqdm(object_names):
         file_name = os.path.splitext(os.path.basename(id))[0]
         json_path = os.path.join(save_dir,object_name,id)
         
-        with open(norm_point_cloud,'w') as file:
+        with open(norm_point_cloud,'wb') as file:
             json.dump(data_to_save,file)
           
           
