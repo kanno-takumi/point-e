@@ -42,6 +42,7 @@ for object_name in tqdm(object_names):
         #ラベルは必要ない
         
         #保存してすぐに取り出せる形に戻す
+        norm_point_cloud = norm_point_cloud.tolist() #リストへ変換
         data_to_save = {'coords':norm_point_cloud}    
         file_name = os.path.splitext(os.path.basename(id))[0]
         json_path = os.path.join(save_dir,object_name,id)
