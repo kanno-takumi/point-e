@@ -37,7 +37,7 @@ sampler = PointCloudSampler(
     device=device,
     models=[base_model, upsampler_model],
     diffusions=[base_diffusion, upsampler_diffusion],
-    num_points=[1024, 2000 - 1024], #点群の数を2000とした。1024がベースになっており、2000はアップサンプリングした状態。
+    num_points=[1024, 4096 - 1024], #点群の数を2000とした。1024がベースになっており、2000はアップサンプリングした状態。
     aux_channels=['R', 'G', 'B'],
     guidance_scale=[3.0, 3.0],
 )
