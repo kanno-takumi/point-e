@@ -46,7 +46,7 @@ for object_name in tqdm(object_names): #Object->Tableみたいなこと
             loaded_data = json.load(file)
 
         dataset = {
-            'coords' : np.array(loaded_data['coords']), 
+            'coords' : loaded_data['coords'], 
             'label' : object_name
             }  
 
