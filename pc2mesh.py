@@ -27,7 +27,7 @@ model.load_state_dict(load_checkpoint(name, device))
 #pc = PointCloud.load('example_data/pc_corgi.npz')
 
 # 文字列からデータ構造に変換
-object_dir_path ='../dataset_pointnet/pointcloud'
+object_dir_path ='../dataset_pointnet_normalized/pointcloud'
 object_names = os.listdir(object_dir_path)
 
 for object_name in tqdm(object_names): #Object->Tableみたいなこと
@@ -61,7 +61,7 @@ for object_name in tqdm(object_names): #Object->Tableみたいなこと
         )
 
         #保存
-        save_top_directory = '../dataset_pointnet/polygon' 
+        save_top_directory = '../dataset_pointnet_normalized/polygon' 
         save_middle_directory = os.path.join(save_top_directory,object_name)
         if not os.path.exists(save_middle_directory):
             os.makedirs(save_middle_directory)
