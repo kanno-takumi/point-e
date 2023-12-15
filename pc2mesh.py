@@ -68,6 +68,6 @@ for object_name in tqdm(object_names): #Object->Tableみたいなこと
             
         save_path = os.path.join(save_top_directory,object_name,f"{only_id}.ply")
         # Write the mesh to a PLY file to import into some other program.
-        with open(save_path, 'w') as f:
+        with open(save_path, 'wb') as f:
             mesh.write_ply(f)
 
