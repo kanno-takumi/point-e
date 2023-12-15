@@ -14,7 +14,7 @@ from .point_cloud import PointCloud
 def marching_cubes_mesh(
     pc: PointCloud,
     model: PointCloudSDFModel,
-    batch_size: int = 4096,
+    batch_size: int = 2000,
     grid_size: int = 128,
     side_length: float = 1.02,
     fill_vertex_channels: bool = True,

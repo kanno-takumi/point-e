@@ -55,7 +55,7 @@ for object_name in tqdm(object_names): #Object->Tableみたいなこと
         mesh = marching_cubes_mesh( #エラー
         pc=pc,
         model=model,
-        batch_size=4096,
+        batch_size=2000,#点群の数:2000
         grid_size=32, # increase to 128 for resolution used in evals
         progress=True,
         )
