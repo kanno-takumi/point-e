@@ -6,7 +6,7 @@ if __name__ == "__main__":
     # Loading point cloud
     print("Loading point cloud")
     #ptCloud = o3d.io.read_point_cloud("dataset/trimesh_primitives/train/0/box_0000.ply")
-    ptCloud = o3d.io.read_point_cloud("mesh_data/cup.ply")
+    ptCloud = o3d.io.read_point_cloud("mesh_data/132fc603f8f69b08e816c75152573ee0.ply")
 
     # confirmation
     print(ptCloud)
