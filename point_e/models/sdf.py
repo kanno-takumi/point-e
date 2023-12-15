@@ -93,8 +93,8 @@ class CrossAttentionPointCloudSDFModel(PointCloudSDFModel):
         self.n_ctx = n_ctx
 
         self.encoder_input_proj = nn.Linear(3, width, device=device, dtype=dtype) #エラー
-        print("エラー",(self.encoder_input_proj.weight).dtype) #float32
-        print("エラー",(self.encoder_input_proj.bias).dtype)   #float32
+        # print("エラー",(self.encoder_input_proj.weight).dtype) #float32
+        # print("エラー",(self.encoder_input_proj.bias).dtype)   #float32
         self.encoder = Transformer(
             device=device,
             dtype=dtype,
