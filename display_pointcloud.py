@@ -17,7 +17,7 @@ from point_e.util.point_cloud import PointCloud
 import json
 import numpy as np
 
-file_name ='pointcloud_data/cup.json'
+file_name ='pointcloud_data/fff7f07d1c4042f8a946c24c4f9fb58e.json'
 with open(file_name, 'r') as file:
     loaded_data = json.load(file)
 
