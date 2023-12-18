@@ -15,6 +15,12 @@ import json
 # モデルの準備
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+#read_directory
+images_dir = '../input-pointe' #1930e.jpg ...
+image_names = os.listdir(images_dir)
+#write_directory
+pointclouds_dir = '../dataset_pointnet/pointcloud_3Dmodel' #1930e.json ...
+
 print('creating base model...')
 base_name = 'base40M' # use base300M or base1B for better results
 base_model = model_from_config(MODEL_CONFIGS[base_name], device)
@@ -37,39 +43,45 @@ sampler = PointCloudSampler(
     device=device,
     models=[base_model, upsampler_model],
     diffusions=[base_diffusion, upsampler_diffusion],
-    num_points=[1024, 4096 - 1024], #点群の数を2000とした。1024がベースになっており、2000はアップサンプリングした状態。
+    num_points=[1024, 4096 - 1024],  #number of pointcloud 1024 -> upsampling 4096
     aux_channels=['R', 'G', 'B'],
     guidance_scale=[3.0, 3.0],
 )
 
+for image_name in image_names:
+    
+#extensionなしの名前取得
+    image_name_without_ext=os.path.splitext(image_name)[0]
+    
 # 画像の準備
-img = Image.open('input_picture/cup.jpg')
+    image_path = os.path.join(images_dir,image_name)
+    img = Image.open(image_path)
 
 # 推論の実行
-samples = None
-for x in tqdm(sampler.sample_batch_progressive(batch_size=1, model_kwargs=dict(images=[img]))):
-    samples = x
+    samples = None
+    for x in tqdm(sampler.sample_batch_progressive(batch_size=1, model_kwargs=dict(images=[img]))):
+        samples = x
     
 # ポイントクラウドの表示
-pc = sampler.output_to_point_clouds(samples)[0] #pc=pointcloud
+    pc = sampler.output_to_point_clouds(samples)[0] #pc=pointcloud
 
-#データを保存するファイル名
-file_name = 'pointcloud_data/cup.json'
+#データを保存するファイル名　拡張子をつける
+    file_name = os.path.join(pointclouds_dir,f"{image_name_without_ext}.json") #image_name -> ---.jpg x ---.json ⚪︎
 
 #型がPointCloudデータになっているため、辞書型に直す
-data_to_save = {
-    'coords':pc.coords.tolist(),
-    'channels': {key:value.tolist() for key,value in pc.channels.items()}
-}
+    data_to_save = {
+        'coords':pc.coords.tolist(),
+        'channels': {key:value.tolist() for key,value in pc.channels.items()}
+    }
 
-with open(file_name,'w') as file:
-    json.dump(data_to_save,file)
+    with open(file_name,'w') as file:
+        json.dump(data_to_save,file)
 
 
 
 #ここの引数でgrid_sizeを決めている 3にすると3*3=9表示される
-fig = plot_point_cloud(pc, grid_size=1, fixed_bounds=((-0.75, -0.75, -0.75),(0.75, 0.75, 0.75)))
-print(type(fig))
+# fig = plot_point_cloud(pc, grid_size=1, fixed_bounds=((-0.75, -0.75, -0.75),(0.75, 0.75, 0.75)))
+# print(type(fig))
 #f2 = open(('fig.txt','a')) 
 #f2.write(str(fig))
 #f2.close()
