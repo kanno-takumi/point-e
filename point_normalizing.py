@@ -8,10 +8,10 @@ from tqdm import tqdm
 NUM_SAMPLE_POINTS = 2000
 
 #jsonから読み込む作業
-object_dir_path = '../dataset_pointnet/pointcloud'
+object_dir_path = '../dataset_pointnet/pointcloud_3Dmodel'
 object_names = os.listdir(object_dir_path)
 point_clouds = []
-save_dir = '../dataset_pointnet_normalized/pointcloud'
+save_dir = '../dataset_pointnet_normalized/pointcloud_3Dmodel'
 
 
 for object_name in tqdm(object_names):
