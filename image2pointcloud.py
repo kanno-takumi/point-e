@@ -53,8 +53,9 @@ for object_name in object_names:
     image_names = os.listdir(images_dir)
     
     #もしsave_dirの先が作られいなければ作成しておく
-    if not os.path.exists():
-        os.makedirs(os.path.join(pointclouds_objects_dir,object_name))
+    save_files_dir = os.path.join(pointclouds_objects_dir,object_name)
+    if not os.path.exists(save_files_dir):
+        os.makedirs(save_files_dir)
     
     for image_name in image_names:
     
