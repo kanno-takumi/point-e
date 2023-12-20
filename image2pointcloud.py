@@ -51,6 +51,11 @@ sampler = PointCloudSampler(
 for object_name in object_names:
     images_dir = os.path.join(objects_dir,object_name)
     image_names = os.listdir(images_dir)
+    
+    #もしsave_dirの先が作られいなければ作成しておく
+    if not os.path.exists(images_dir):
+        os.makedirs(images_dir)
+    
     for image_name in image_names:
     
     #extensionなしの名前取得
