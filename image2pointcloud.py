@@ -16,10 +16,10 @@ import json
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 #read_directory
-images_dir = '../input-pointe/Mug' #1930e.jpg ...
-image_names = os.listdir(images_dir)
+objects_dir = '../input-pointe' #Mug,Table ...
+object_names = os.listdir(objects_dir)
 #write_directory
-pointclouds_dir = '../dataset_pointnet/pointcloud_3Dmodel/Mug' #1930e.json ...
+pointclouds_objects_dir = '../dataset_pointnet/pointcloud_3Dmodel' #Mug,Table ...
 
 print('creating base model...')
 base_name = 'base40M' # use base300M or base1B for better results
@@ -48,34 +48,37 @@ sampler = PointCloudSampler(
     guidance_scale=[3.0, 3.0],
 )
 
-for image_name in image_names:
+for object_name in object_names:
+    images_dir = os.path.join(objects_dir,object_name)
+    image_names = os.listdir(images_dir)
+    for image_name in image_names:
     
-#extensionなしの名前取得
-    image_name_without_ext=os.path.splitext(image_name)[0]
+    #extensionなしの名前取得
+        image_name_without_ext=os.path.splitext(image_name)[0]
     
-# 画像の準備
-    image_path = os.path.join(images_dir,image_name)
-    img = Image.open(image_path)
+    # 画像の準備
+        image_path = os.path.join(images_dir,image_name)
+        img = Image.open(image_path)
 
-# 推論の実行
-    samples = None
-    for x in tqdm(sampler.sample_batch_progressive(batch_size=1, model_kwargs=dict(images=[img]))):
-        samples = x
+    # 推論の実行
+        samples = None
+        for x in tqdm(sampler.sample_batch_progressive(batch_size=1, model_kwargs=dict(images=[img]))):
+            samples = x
     
-# ポイントクラウドの表示
-    pc = sampler.output_to_point_clouds(samples)[0] #pc=pointcloud
+    # ポイントクラウドの表示
+        pc = sampler.output_to_point_clouds(samples)[0] #pc=pointcloud
 
-#データを保存するファイル名　拡張子をつける
-    file_name = os.path.join(pointclouds_dir,f"{image_name_without_ext}.json") #image_name -> ---.jpg x ---.json ⚪︎
+    #データを保存するファイル名　拡張子をつける
+        file_name = os.path.join(pointclouds_objects_dir,object_name,f"{image_name_without_ext}.json") #image_name -> ---.jpg x ---.json ⚪︎
 
-#型がPointCloudデータになっているため、辞書型に直す
-    data_to_save = {
-        'coords':pc.coords.tolist(),
-        'channels': {key:value.tolist() for key,value in pc.channels.items()}
-    }
+    #型がPointCloudデータになっているため、辞書型に直す
+        data_to_save = {
+            'coords':pc.coords.tolist(),
+            'channels': {key:value.tolist() for key,value in pc.channels.items()}
+        }
 
-    with open(file_name,'w') as file:
-        json.dump(data_to_save,file)
+        with open(file_name,'w') as file:
+            json.dump(data_to_save,file)
 
 
 
