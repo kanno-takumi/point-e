@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 NUM_SAMPLE_POINTS = 2000
 
-with open(path,'r') as file:
+with open ('pointcloud_data/generated/pointcloud_3Dmodel/Mug/S__34930696.json','r') as file:
     loaded_data = json.load(file)
     
 current_point_cloud = loaded_data["coords"] #点群の2次元配列？
@@ -24,7 +24,7 @@ norm_point_cloud /= np.max(np.linalg.norm(norm_point_cloud,axis=1))
 
 norm_point_cloud_list = norm_point_cloud.tolist() #リストへ変換
 data_to_save = {'coords':norm_point_cloud_list}    
-json_path = path
+json_path = 'pointcloud_data/tmp/__34930696.json'
         
 with open(json_path,'w') as file:
     json.dump(data_to_save,file)

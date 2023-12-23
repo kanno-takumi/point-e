@@ -17,7 +17,8 @@ from point_e.util.point_cloud import PointCloud
 import json
 import numpy as np
 
-file_name ='pointcloud_data/generated/normalized/S__34930732.json'
+# file_name ='pointcloud_data/generated/pointcloud_3Dmodel/Mug/S__34930696.json'
+file_name ='pointcloud_data/tmp/__34930696.json'
 with open(file_name, 'r') as file:
     loaded_data = json.load(file)
 
